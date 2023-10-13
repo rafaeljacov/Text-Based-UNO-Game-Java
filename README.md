@@ -20,4 +20,4 @@ Before you can start playing, make sure you have the following installed:
    
 2. Open the project using your favorite Java IDE of choice and run the program.
 
-![Image] ("./IDE.png")
+![Image](IDE.png)
