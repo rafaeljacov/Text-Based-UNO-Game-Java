@@ -20,6 +20,10 @@ Before you can start playing, make sure you have the following installed:
    
 2. Open the project using your favorite Java IDE of choice and run the program. (Make sure that you have set your Main class in your configurations)
 
+Or
+
+3. If you are a geek, compile and run the program yourself using the "javac" and "java" commands through the terminal.
+
 ![Image](IDE.png)
 
 
