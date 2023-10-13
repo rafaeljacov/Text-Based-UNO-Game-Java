@@ -17,3 +17,7 @@ Before you can start playing, make sure you have the following installed:
 
    ```bash
    git clone https://github.com/yourusername/text-based-uno-java.git
+   
+2. Open the project using your favorite Java IDE of choice and run the program.
+
+![Image] ("./IDE.png")
