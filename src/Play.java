@@ -13,7 +13,6 @@ public class Play {
     static void startGame() throws InterruptedException {
         System.out.println("\t\t*********** Let's Play UNO! ***********");
 
-        Deck.shuffle(deck);
         if(botCount == 0) {
             System.out.println("How many Bots would you like to play with? [min:1, max: 9]");
             while (true) {
@@ -38,10 +37,15 @@ public class Play {
             bots[botCount - 1].next = user;
         }
 
+        System.out.println("Shuffling Deck...");
+        Thread.sleep(1500);
+        Deck.shuffle(deck);
+
         // Deal cards to players
         PlayMethods.dealCards(user);
         Thread.sleep(2000);
 
+        // Create Discard Pile and set the first color to be played.
         PlayMethods.startDiscardPile(deck, discardPile);
         setColorToPlay(discardPile.peek().color);
 
@@ -51,7 +55,7 @@ public class Play {
             Card topDiscardPile = discardPile.peek();
 
             // Getting current player's playable cards.
-            int[] playableCards = PlayMethods.scanPlayableCards(currentPlayer, topDiscardPile, colorToPlay);
+            int playableCards = PlayMethods.scanPlayableCards(currentPlayer, topDiscardPile, colorToPlay);
 
             System.out.printf("\nCurrent Player in turn: %s\n", currentPlayer.name);
             Thread.sleep(1500);
@@ -59,7 +63,7 @@ public class Play {
             Thread.sleep(2500);
 
             // Check first if current player doesn't have any playable cards.
-            if (playableCards[0] == 0 && playableCards[1] == 0) {
+            if (playableCards == 0) {
                 System.out.printf("%s currently doesn't have any playable cards. Draws 1 card from the Draw Pile...\n",
                         currentPlayer.name);
                 Thread.sleep(3500);

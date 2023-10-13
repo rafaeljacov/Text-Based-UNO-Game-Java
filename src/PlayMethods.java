@@ -31,16 +31,17 @@ public class PlayMethods {
         System.out.println();
     }
 
-    static void drawCards(int quantity, Player player) {
+    static void drawCards(int quantity, Player player) throws InterruptedException {
         for (int i = 0; i < quantity; i++) {
 
             // Reshuffle if Draw Pile is empty.
             if (Play.deck.isEmpty()) {
-                System.out.println("""
+                System.out.print("""
+                        
                         Draw Pile is currently empty.
                         Transferring cards from Discard Pile except top card to Draw Pile and reshuffling...
                         """);
-
+                Thread.sleep(2500);
                 System.out.println("\nDone.");
 
                 Card topDiscardPile = Play.discardPile.pop();
@@ -66,29 +67,27 @@ public class PlayMethods {
         }
     }
 
-    static int[] scanPlayableCards(Player player, Card topDiscardPile, String colorToPlay) {
-        // Array of playable cards:
-        // First index indicates count of playable cards except wild draw 4 cards,
-        // Second index indicates wild draw 4 cards.
-        int[] playable = {0, 0};
+    static int scanPlayableCards(Player player, Card topDiscardPile, String colorToPlay) {
+        int playableCards = 0;
 
         // Check if each card in hand is playable.
         for (Card card: player.hand) {
-            // Check for Wild Draw 4.
-            if(card instanceof WildCard && ((WildCard) card).type.equals("Wild Draw 4")) playable[1]++;
             // Check for others
-            else if (card.isPlayable(topDiscardPile, colorToPlay)) playable[0]++;
+            if (card.isPlayable(topDiscardPile, colorToPlay)) playableCards++;
         }
-        return playable;
+        return playableCards;
     }
 
     static void printDeckStats() {
+        Card topDiscardPile = Play.discardPile.peek();
         System.out.println("*************************************************************");
         System.out.printf("\tDraw Pile card count: %d, Discard Pile card count: %d\n",
                 Play.deck.size(), Play.discardPile.size());
         System.out.print("\t\t\tTop Card of Discard Pile: ");
         Card.printCard(Play.discardPile.peek());
-        System.out.printf("\t\t\t\t\tColor to play: %s\n", Play.getColorToPlay());
+        if (topDiscardPile instanceof WildCard) {
+            System.out.printf("\t\t\t\tColor to play: %s\n", Play.getColorToPlay());
+        }
         System.out.println("*************************************************************");
     }
 

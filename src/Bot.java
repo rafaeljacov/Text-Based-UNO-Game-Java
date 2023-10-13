@@ -47,7 +47,7 @@ public class Bot extends Player {
                 case "Wild" -> {
                     System.out.printf("%s played a Wild Card.\n", this.name);
                     WildCard.playWild(this);
-                    Thread.sleep(1000);
+                    Thread.sleep(800);
                 }
                 case "Wild Draw 4" -> WildCard.attemptPlayWildDraw4(this, colorToPlay);
             }
@@ -55,7 +55,7 @@ public class Bot extends Player {
         } else if (chosenCard instanceof ActionCard) {
             System.out.printf("%s played the card: ", this.name);
             Card.printCard(chosenCard);
-            Thread.sleep(1000);
+            Thread.sleep(800);
             switch (((ActionCard) chosenCard).type) {
                 case "Skip" -> ActionCard.playSkip();
                 case "Reverse" -> ActionCard.playReverse();
@@ -65,7 +65,7 @@ public class Bot extends Player {
         } else if (chosenCard instanceof NumberCard) {
             System.out.printf("%s played the card: ", this.name);
             Card.printCard(chosenCard);
-            Thread.sleep(1000);
+            Thread.sleep(800);
 
             chosenCard.play(this);
         }

@@ -33,7 +33,7 @@ public class User extends Player{
                     switch (((WildCard) chosenCard).type) {
                         case "Wild" -> {
                             System.out.printf("%s played a Wild Card.\n", this.name);
-                            Thread.sleep(1000);
+                            Thread.sleep(800);
                             WildCard.playWild(this);
                         }
                         case "Wild Draw 4" -> {
@@ -49,7 +49,7 @@ public class User extends Player{
                 } else if (chosenCard instanceof ActionCard) {
                     System.out.printf("%s played the card: ", this.name);
                     Card.printCard(chosenCard);
-                    Thread.sleep(1000);
+                    Thread.sleep(800);
                     switch (((ActionCard) chosenCard).type) {
                         case "Skip" -> ActionCard.playSkip();
                         case "Reverse" -> ActionCard.playReverse();
@@ -60,7 +60,7 @@ public class User extends Player{
                 } else if (chosenCard instanceof NumberCard) {
                     System.out.printf("%s played the card: ", this.name);
                     Card.printCard(chosenCard);
-                    Thread.sleep(1000);
+                    Thread.sleep(800);
 
                     chosenCard.play(this);
                     break;

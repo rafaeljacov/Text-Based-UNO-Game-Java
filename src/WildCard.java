@@ -37,6 +37,7 @@ public class WildCard extends Card {
         }
         else color = botChooseColor((Bot) player);
 
+        Thread.sleep(600);
         System.out.printf("%s chose the color %s\n", player.name, color);
         Play.setColorToPlay(color);
         Thread.sleep(1500);
