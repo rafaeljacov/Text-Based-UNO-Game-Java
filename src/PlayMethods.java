@@ -36,11 +36,9 @@ public class PlayMethods {
 
             // Reshuffle if Draw Pile is empty.
             if (Play.deck.isEmpty()) {
-                System.out.print("""
-                        
-                        Draw Pile is currently empty.
-                        Transferring cards from Discard Pile except top card to Draw Pile and reshuffling...
-                        """);
+                System.out.println("Draw Pile is currently empty.");
+                Thread.sleep(700);
+                System.out.println("Transferring cards from Discard Pile except top card to Draw Pile and reshuffling...");
                 Thread.sleep(2500);
                 System.out.println("\nDone.");
 
