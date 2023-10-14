@@ -103,6 +103,7 @@ public class WildCard extends Card {
         Thread.sleep(1500);
     }
 
+    // Displays and executes challenge result.
     private static void challenge(Player player, String colorToPlay) throws InterruptedException {
         boolean isSafe = true;
         for (Card card: player.hand) {
@@ -112,23 +113,23 @@ public class WildCard extends Card {
             }
         }
 
-        Player nextPlayer;
+        Player challenger;
         if (Play.getTurnReversed()) {
-            nextPlayer = player.prev;
-        } else nextPlayer = player.next;
+            challenger = player.prev;
+        } else challenger = player.next;
 
-        System.out.printf("%s wants to challenge %s for playing a Wild Draw 4 card!\n", nextPlayer.name, player.name);
+        System.out.printf("%s wants to challenge %s for playing a Wild Draw 4 card!\n", challenger.name, player.name);
         Thread.sleep(2500);
         PlayMethods.displayHand(player);
         // If challenger won they get to play next turn and the player draws 4 cards instead.
         if (!isSafe) {
             System.out.printf("%s won the challenge and gets to play next turn. %s gets to draw 4 cards instead.\n",
-                    nextPlayer.name, player.name);
+                    challenger.name, player.name);
             PlayMethods.drawCards(4, player);
         } else {
             //  They draw 6 cards instead and still lose their turn.
-            System.out.printf("%s lost the challenge and gets to draw 6 cards in total while still losing turn.\n", nextPlayer.name);
-            PlayMethods.drawCards(6, nextPlayer);
+            System.out.printf("%s lost the challenge and gets to draw 6 cards in total while still losing turn.\n", challenger.name);
+            PlayMethods.drawCards(6, challenger);
             Play.activateSkip();
         }
         Thread.sleep(2500);
